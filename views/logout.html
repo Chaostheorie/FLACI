@@ -1,0 +1,14 @@
+<md-dialog style="width:300px;max-width:300px;padding:20px">
+  <md-content> 
+    <h3 translate="USERACCOUNT"></h3> 
+    <md-input-container layout-fill> 
+      <label translate="EMAIL"></label> 
+      <input ng-model="email" readonly type="email"></input> 
+    </md-input-container> 
+  </md-content> 
+  <div class="md-actions"> 
+    <md-button type="button" ng-click="cancel()" translate="CANCEL"></md-button> 
+    <md-button class="md-primary" ng-click="logout()" translate="LOGOUT"></md-button> 
+  </div>
+</md-dialog>
+

@@ -1,0 +1,76 @@
+<div ng-controller="AppController as self" style="position:absolute;left:0px;top:0px;height:100%;width:100%">
+  <md-toolbar layout="row" layout-align="center center" style="height:64px">
+    <span flex style="padding-left:10px;white-space:nowrap;"><i class="fa fa-cloud"></i> FLACI Translation</span>
+    &nbsp;
+  </md-toolbar>
+
+  <md-content layout="row" style="position:absolute;left:0px;top:64px;bottom:0px;width:100%">
+   <div style="max-width:1000px;text-align:center;margin:auto;margin-top:20px;padding-bottom:20px">
+     <div class="md-whiteframe-z2" style="background:white;padding:20px">
+
+       <div layout="row" layout-align="center center" style="margin-bottom:10px">
+         <div>
+           Von Deutsch nach: 
+         </div>
+         <div ng-repeat="lang in self.translationLanguages">
+           <md-button class="md-raised" ng-class="{'md-primary':self.translationLanguage == lang}" ng-click="self.translationLanguage = lang; self.getTranslation(lang)">{{lang}}</md-button>
+         </div>
+       </div>
+
+       <div layout="row" layout-align="center center" style="margin-bottom:10px">
+         <div>
+           <md-button style="margin-left:0" class="md-raised" ng-click="self.translationSelect = null" ng-class="{'md-primary':!self.translationSelect}">Allgemein</md-button>
+         </div>
+         <div ng-repeat="(key, value) in self.translations['DE']">
+           <md-button ng-if="!value.match" class="md-raised" ng-class="{'md-primary':self.translationSelect == key}" ng-click="self.translationSelect = key">{{key}}</md-button>
+         </div>
+       </div>
+
+       <div ng-repeat="(key, value) in self.translations['DE']">
+         <div ng-if="value.match && self.translationSelect == null" layout="row">
+           <md-input-container flex="50">
+             <label style="text-align:left">{{key}}</label>
+             <textarea ng-model="self.translations['DE'][key]" readonly></textarea>
+           </md-input-container>
+           <md-input-container flex="50">
+             <label style="text-align:left">{{key}}</label>
+             <textarea ng-model="self.translations[self.translationLanguage][key]" ng-model-options="{debounce:500}" ng-change="self.saveTranslations()"></textarea>
+           </md-input-container>
+         </div>
+         <div ng-if="!value.match && self.translationSelect == key">
+           <div ng-repeat="(key2, value2) in value">
+             <div ng-if="value2.match" layout="row">
+               <md-input-container flex="50">
+                 <label style="text-align:left">{{key2}}</label>
+                 <textarea ng-model="self.translations['DE'][key][key2]" readonly></textarea>
+               </md-input-container>
+               <md-input-container flex="50">
+                 <label style="text-align:left">{{key2}}</label>
+                 <textarea ng-model="self.translations[self.translationLanguage][key][key2]" ng-model-options="{debounce:500}" ng-change="self.saveTranslations()"></textarea>
+               </md-input-container>
+             </div>
+
+             <div ng-if="!value2.match">
+               <h4 style="background:#0288D1;padding:4px;color:white">{{key2}}</h4>
+               <div ng-repeat="(key3, value3) in value2">
+                 <div ng-if="value3.match" layout="row">
+                   <md-input-container flex="50">
+                     <label style="text-align:left">{{key3}}</label>
+                     <textarea ng-model="self.translations['DE'][key][key2][key3]" readonly></textarea>
+                   </md-input-container>
+                   <md-input-container flex="50">
+                     <label style="text-align:left">{{key3}}</label>
+                     <textarea ng-model="self.translations[self.translationLanguage][key][key2][key3]" ng-model-options="{debounce:500}" ng-change="self.saveTranslations()"></textarea>
+                   </md-input-container>
+                 </div>
+               </div>
+             </div>
+
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+  </md-content>
+
+</div>

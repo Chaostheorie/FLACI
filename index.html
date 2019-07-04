@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>FLACI</title>
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="libs/jquery/jquery-ui.min.css" />
+    <link rel="stylesheet" href="libs/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="libs/font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="libs/font-awesome-4.6.3/css/font-awesome-animation.css">
+
+    <link rel="stylesheet" href="libs/ng-sortable/dist/ng-sortable.css">
+    <link rel="stylesheet" href="libs/ng-sortable/dist/ng-sortable.style.css">
+    <link rel="stylesheet" href="libs/angular/loading-bar.css"/>
+    <link rel="stylesheet" href="libs/codemirror/lib/codemirror.css">
+
+    <base href="/">
+  </head>
+
+  <body ng-app="App" class="noselect" style="overflow:hidden;background:rgb(2,136,209)" layout="column" ng-controller="AppController as self">
+    <div ng-view class="view-animate"></div>
+    <iframe id="downloadFileFrame" style="display:none"></iframe>
+
+    <script src="libs/jquery/jquery-2.1.1.min.js"></script>
+    <script src="libs/jquery/jquery-ui.min.js"></script> 
+    <script src="libs/jquery/md5.js"></script> 
+    <script src="libs/jquery/FileSaver.js"></script> 
+    <script src="libs/jquery/html2canvas.js"></script> 
+
+    <script src="libs/JSTreeGraph/JSTreeGraph.js"></script>
+    <script src="libs/angular/angular.js"></script>
+    <script src="libs/angular/angular-sanitize.js"></script>
+    <script src="libs/angular/angular-messages.js"></script>
+    <script src="libs/angular/angular-translate.min.js"></script>
+    <script src="libs/angular/angular-translate-loader-static-files.min.js"></script>
+    <script src="libs/angular/angular-animate.js"></script>
+    <script src="libs/angular/angular-route.js"></script>
+    <script src="libs/angular/angular-aria.js"></script>
+    <script src="libs/angular/loading-bar.js"></script>
+    <script src="libs/angular/fastclick.js"></script>
+    
+    <script src="libs/angular/ng-infinite-scroll.min.js"></script>
+    <script src="libs/angular-material/angular-material.js"></script>
+    <script src="libs/ng-sortable/dist/ng-sortable.js"></script>
+    <script src="libs/codemirror/lib/codemirror.js"></script>
+    <script src="libs/codemirror/mode/javascript/javascript.js"></script>
+    <script src="libs/codemirror/addon/mode/simple.js"></script>
+    <script src="libs/codemirror/addon/display/placeholder.js"></script>
+    <script src="libs/angular-ui-codemirror/ui-codemirror.js"></script>
+
+    <script src="libs/audiosynth/audiosynth.js"></script>
+    <script src="libs/pablojs/pablo.min.js"></script>
+
+    <script src="libs/momentjs/moment.min.js"></script>
+    <script src="libs/clipboardjs/clipboard.min.js "></script>
+
+<!--    <script src="libs/earley/earley.php"></script> -->
+    <script src="libs/earley/earley2.js"></script>
+
+    <link rel="stylesheet" href="styles/main.css" />
+    <script src="flaci.js"></script>
+
+    <!-- VCC -->
+    <script src="libs/jison/json2.js"></script>
+    <script src="libs/jison/es5.js"></script>
+    <script src="libs/jison/jison/lexer.js"></script>
+    <script src="libs/jison/jison/util/typal.js"></script>
+    <script src="libs/jison/jison/util/set.js"></script>
+    <script src="libs/jison/jison/util/bnf-parser.js"></script>
+    <script src="libs/jison/jison/bnf.js"></script>
+    <script src="libs/jison/jison.js"></script>
+    <script src="libs/jison/atocc.js"></script>
+    <script src="libs/jison/bnfparser.js"></script>
+    <script src="libs/jison/re2kfg.js"></script>
+    <script src="libs/jison/re2nea.js"></script>
+
+    <!-- TDiag -->
+    <link rel="stylesheet" href="views/tdiag/tdiag.css" />
+    <script src="views/tdiag/tdiag.js"></script>
+    <script src="views/tdiag/predefined.js"></script>
+
+    <!-- kfgEdit -->
+    <link rel="stylesheet" href="views/kfgedit/kfgedit.css" />
+    <script src="views/kfgedit/kfgedit.js"></script>
+
+    <!-- AutoEdit -->
+    <link rel="stylesheet" href="views/autoedit/autoedit.css" />
+    <script src="views/autoedit/autoedit.js"></script>
+
+    <!-- Transformations -->
+    <script src="libs/transformations/autoLayoutAutomaton.js"></script>
+    <script src="libs/transformations/deleteUnusedStates.js"></script>
+    <script src="libs/transformations/minimalDEA.js"></script>
+    <script src="libs/transformations/regGr2NEA.js"></script>
+    <script src="libs/transformations/kfGr2NKA.js"></script>
+    <script src="libs/transformations/removeEspilonGrammar.js"></script>
+    <script src="libs/transformations/convertGrammarToCNF.js"></script>
+    <script src="libs/transformations/checkLL1Grammar.js"></script>
+    <script src="libs/transformations/linkedBNF.js"></script>
+    <script src="libs/transformations/insertEpsilonGrammar.js"></script>
+    <script src="libs/transformations/removeChainsGrammar.js"></script>
+    <script src="libs/transformations/cleanupGrammar.js"></script>
+    <script src="libs/transformations/removeLeftRecursionGrammar.js"></script>
+    <script src="libs/transformations/leftFactorGrammar.js"></script>
+
+    <script src="libs/transformations/ea2grammar.js"></script>
+    <script src="libs/transformations/ea2regexp.js"></script>
+    <script src="libs/transformations/ka2grammar.js"></script>
+    <script src="libs/transformations/LL1parser.js"></script>
+
+    <script src="libs/transformations/isGrammarRegular.js"></script>
+    <script src="libs/transformations/regexGr2NEA.js"></script>
+    <script src="libs/transformations/leftRegular2rightRegular.js"></script>
+
+    <script src="libs/transformations/removeTrapStates.js"></script>
+    <script src="libs/transformations/linkedEA.js"></script>
+    <script src="libs/transformations/removeEpsilonNEA.js"></script>
+    <script src="libs/transformations/NEAtoDEA.js"></script>
+    <script src="libs/transformations/optimizeNEA.js"></script>
+    <script src="libs/transformations/completeDEA.js"></script>
+
+    <script src="libs/transformations/removeEpsilonNEAClassic.js"></script>
+    <script src="libs/transformations/cleanupNEA.js"></script>
+    <script src="libs/transformations/7to6tupelKA.js"></script>
+
+    <!-- Languages -->
+    <link rel="stylesheet" href="views/languages/languages.css" />
+    <script src="views/languages/languages.js"></script>
+
+    <!-- RegExp -->
+    <script src="libs/regexp/regexp.js"></script>
+    <script src="libs/regexp/randexp.min.js"></script>
+
+    <link rel="stylesheet" href="views/regexp/regexp.css" />
+    <script src="views/regexp/regexp.js"></script>
+
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-91464294-1', 'auto');
+  ga('send', 'pageview');
+
+   </script>
+ </body>
+</html>
